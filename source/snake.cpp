@@ -94,10 +94,29 @@ bool Snake::move(int direction)
 		segments[i].setPos(segments[i - 1].getX(), segments[i - 1].getY());
 	}
 	segments[0].move(direction);
-	if (hasSegment(getX(), getY(), false) || getX() < 0 || getX() + 8 > 256 || getY() < 0 || getY() + 8 > 192)
+
+	if (hasSegment(getX(), getY(), false))
 	{
 		return false;
 	}
+
+	if (getX() < 0)
+	{
+		segments[0].setPos(31*8, segments[0].getY());
+	}
+	else if (getX() > 31*8)
+	{
+		segments[0].setPos(0, segments[0].getY());
+	}
+	else if (getY() < 0)
+	{
+		segments[0].setPos(segments[0].getX(), 23*8);
+	}
+	else if (getY() > 23*8)
+	{
+		segments[0].setPos(segments[0].getX(), 0);
+	}
+
 	if (hasApple())
 	{
 		if (size < 62)
@@ -113,3 +132,4 @@ bool Snake::move(int direction)
 	}
 	return true;
 }
+
