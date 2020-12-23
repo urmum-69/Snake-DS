@@ -4,10 +4,14 @@
 #include "segment.h"
 #include "snake.h"
 
-const int up = 0;
-const int down = 1;
-const int left = 2;
-const int right = 3;
+enum directions
+{
+    up,
+    down,
+    left,
+    right
+};
+
 
 Snake snake(4);	
 int timer = 0;
